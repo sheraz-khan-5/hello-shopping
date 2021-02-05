@@ -14,11 +14,7 @@ export class App extends Component {
        sort:""
     }
   }
-  sortProducts=(state)=>{
-    this.setState({
-      
-    })
-  }
+
   filterProducts=(event)=>{
     if(event.target.value===""){
       this.setState({
