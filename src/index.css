@@ -115,3 +115,57 @@ footer{
 .button.primary{
  background-color: #f0c040;
 }
+.filter-container{
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  margin: 1rem;
+  border-bottom: 0.1rem solid #c0c0c0;border-bottom: 0.1rem solid #c0c0c0;
+
+
+}
+.filter-container div{
+  flex: 1;
+}
+.cart{
+  display: flex;
+  padding: 1.15rem;
+  margin: 1rem;
+}
+.cart-header{
+  border-bottom: 0.1rem solid #c0c0c0;
+}
+.cart-items{
+  width: 100%;
+  padding: 0%;
+  list-style: none;
+}
+.cart-items img{
+  width:5rem
+}
+.cart-items li{
+  display: flex;
+  padding: 1rem;
+}
+.cart-items li div{
+  padding: 0.3rem;
+}
+.cart-items li div:last-child{
+  flex:1;
+}
+.right{
+  text-align: right;
+}
+.total{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.total > div{
+  font-size: 2rem;
+}
+.total > div, 
+.total > button{
+  flex: 1;
+}

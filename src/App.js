@@ -3,17 +3,43 @@ import data from './data.json'
 import React, { Component } from 'react'
 import Products from './components/Products'
 import Filter from './components/Filter'
+import Cart from './components/Cart'
 
 export class App extends Component {
   constructor(props) {
     super(props)
   
     this.state = {
+      cartItems:[],
        products:data.products,
        size:"",
        sort:""
     }
   }
+  removeItems=(product)=>{
+    const cartItems=this.state.cartItems.slice()
+    this.setState({
+      cartItems:cartItems.filter(x=>x._id!==product._id)
+    })
+    
+  }
+  
+  addToCart=(product)=>{
+    const cartItems=this.state.cartItems.slice();
+    let alreadyExitItem=false;
+    cartItems.forEach((item)=>{
+      if(item._id===product._id){
+        item.count++;
+        alreadyExitItem=true;
+      }
+    }); 
+    if(!alreadyExitItem){
+      cartItems.push({
+        ...product,count:1
+      })
+    }
+    this.setState({cartItems})
+  };
 
   filterProducts=(event)=>{
     if(event.target.value===""){
@@ -48,23 +74,27 @@ export class App extends Component {
     )}
   
   render() {
+    console.log(this.state.cartItems)
     return (
       <div className="grid-container">
         <header>
           <a href="/">My Shopping</a>
         </header>
         <main>
+         
+        <div className="content">
+          
+          <div className="main">
           <Filter count={this.state.products.length} 
           size={this.state.size}
           sort={this.state.sort}
           filterProducts={this.filterProducts}
           sortProducts={this.sortProducts}
           />
-        <div className="content">
-          <div className="main">
-          <Products products={this.state.products} />
+          <Products products={this.state.products} addToCart={this.addToCart}/>
           </div>
-          <div className="sidebar">Cart Items </div>
+          <div className="sidebar">
+            <Cart cartItems={this.state.cartItems} removeItems={this.removeItems}/> </div>
         </div>
         </main>
         <footer>
