@@ -10,17 +10,21 @@ export class App extends Component {
     super(props)
   
     this.state = {
-      cartItems:[],
+      cartItems:localStorage.getItem("cartItems")?JSON.parse(localStorage.getItem("cartItems")):[],
        products:data.products,
        size:"",
        sort:""
     }
+  }
+  createOrder=(order)=>{
+    alert ('Need to save order for  ' +order.name);
   }
   removeItems=(product)=>{
     const cartItems=this.state.cartItems.slice()
     this.setState({
       cartItems:cartItems.filter(x=>x._id!==product._id)
     })
+    localStorage.setItem("cartItems", JSON.stringify(cartItems.filter(x=>x._id!==product._id)) )
     
   }
   
@@ -39,6 +43,7 @@ export class App extends Component {
       })
     }
     this.setState({cartItems})
+    localStorage.setItem("cartItems", JSON.stringify(cartItems) )
   };
 
   filterProducts=(event)=>{
@@ -94,7 +99,9 @@ export class App extends Component {
           <Products products={this.state.products} addToCart={this.addToCart}/>
           </div>
           <div className="sidebar">
-            <Cart cartItems={this.state.cartItems} removeItems={this.removeItems}/> </div>
+            <Cart cartItems={this.state.cartItems} removeItems={this.removeItems}
+            createOrder={this.createOrder}/> 
+            </div>
         </div>
         </main>
         <footer>
