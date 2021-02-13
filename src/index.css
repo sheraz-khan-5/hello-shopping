@@ -200,7 +200,7 @@ input{
   margin: 0 auto;
 }
 .product-details-description{
-  /* flex:1 1; */
+  flex:1 1;
   margin: 1rem;
 }
 .close-modal{
