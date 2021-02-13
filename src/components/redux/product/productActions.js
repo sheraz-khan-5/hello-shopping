@@ -9,7 +9,6 @@ export const  fetchActions=()=> async (dispatch)=>{
             type:FETCH_PRODUCTS,
             payload:data,
         });
-
         };
 export const filterProducts=(products,size) => (dispatch)=>{
     dispatch({
@@ -40,7 +39,6 @@ export const sortProducts=(filteredProducts , sort)=>(dispatch)=>{
         payload:{
             sort:sort,
             items:sortedProducts
-        }
-    
+        }   
     }
     )}
