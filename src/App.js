@@ -8,45 +8,47 @@ import store from './store'
 import { Provider } from 'react-redux'
 
 export class App extends Component {
-  constructor(props) {
-    super(props)
+  // constructor(props) {
+  //   super(props)
   
-    this.state = {
-      cartItems:localStorage.getItem("cartItems")?JSON.parse(localStorage.getItem("cartItems")):[],
-      //  products:data.products,
-      //  size:"",
-      //  sort:""
-    }
-  }
-  createOrder=(order)=>{
-    alert ('Need to save order for  ' +order.name);
-  }
-  removeItems=(product)=>{
-    const cartItems=this.state.cartItems.slice()
-    this.setState({
-      cartItems:cartItems.filter(x=>x._id!==product._id)
-    })
-    localStorage.setItem("cartItems", JSON.stringify(cartItems.filter(x=>x._id!==product._id)) )
+  //   this.state = {
+  //     cartItems:localStorage.getItem("cartItems")?JSON.parse(localStorage.getItem("cartItems")):[],
+  //     //  products:data.products,
+  //     //  size:"",
+  //     //  sort:""
+  //   }
+  // }
+  // createOrder=(order)=>{
+  //   alert ('Need to save order for  ' +order.name);
+  // }
+  // removeItems=(product)=>{
+  //   const cartItems=this.state.cartItems.slice()
+  //   this.setState({
+  //     cartItems:cartItems.filter(x=>x._id!==product._id)
+  //   }
+  //   )
+
+  //   localStorage.setItem("cartItems", JSON.stringify(cartItems.filter(x=>x._id!==product._id)) )
     
-  }
+  // }
   
-  addToCart=(product)=>{
-    const cartItems=this.state.cartItems.slice();
-    let alreadyExitItem=false;
-    cartItems.forEach((item)=>{
-      if(item._id===product._id){
-        item.count++;
-        alreadyExitItem=true;
-      }
-    }); 
-    if(!alreadyExitItem){
-      cartItems.push({
-        ...product,count:1
-      })
-    }
-    this.setState({cartItems})
-    localStorage.setItem("cartItems", JSON.stringify(cartItems) )
-  };
+  // addToCart=(product)=>{
+  //   const cartItems=this.state.cartItems.slice();
+  //   let alreadyExitItem=false;
+  //   cartItems.forEach((item)=>{
+  //     if(item._id===product._id){
+  //       item.count++;
+  //       alreadyExitItem=true;
+  //     }
+  //   }); 
+  //   if(!alreadyExitItem){
+  //     cartItems.push({
+  //       ...product,count:1
+  //     })
+  //   }
+  //   this.setState({cartItems})
+  //   localStorage.setItem("cartItems", JSON.stringify(cartItems) )
+  // };
 
   // filterProducts=(event)=>{
   //   if(event.target.value===""){
@@ -81,7 +83,7 @@ export class App extends Component {
   //   )}
   
   render() {
-    console.log(this.state.cartItems)
+   
     return (
       <Provider store={store}>
       <div className="grid-container">
@@ -102,11 +104,14 @@ export class App extends Component {
           />
           <Products
           //  products={this.state.products} 
-           addToCart={this.addToCart}/>
+          //  addToCart={this.addToCart}
+           />
           </div>
           <div className="sidebar">
-            <Cart cartItems={this.state.cartItems} removeItems={this.removeItems}
-            createOrder={this.createOrder}/> 
+            <Cart
+            //  cartItems={this.state.cartItems} removeItems={this.removeItems}
+            // createOrder={this.createOrder}
+            /> 
             </div>
         </div>
         </main>
